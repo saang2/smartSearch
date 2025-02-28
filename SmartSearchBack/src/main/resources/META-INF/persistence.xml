@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence           http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+  <persistence-unit name="tildasaur_SmartSearchBack_jar_1.0-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>tildasaur.smartsearchback.entity.Role</class>
+    <class>tildasaur.smartsearchback.entity.Userroom</class>
+    <class>tildasaur.smartsearchback.entity.Timeworks</class>
+    <class>tildasaur.smartsearchback.entity.Message</class>
+    <class>tildasaur.smartsearchback.entity.Room</class>
+    <class>tildasaur.smartsearchback.entity.Users</class>
+    <class>tildasaur.smartsearchback.entity.Logs</class>
+    <class>tildasaur.smartsearchback.entity.Mentions</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/smartSearch"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="1234"/>
+    </properties>
+  </persistence-unit>
+</persistence>
