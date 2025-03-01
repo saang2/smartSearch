@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap" rel="stylesheet" />
+  <title>Календарь событий</title>
+</head>
+
+<body>
+  <div class="container3">
+    <div class="header3">
+      <img src="/img/qucik_sign_up.png" alt="Назад" class="qucik-signup" id="backButton" style="cursor: pointer;" />
+      <p class="edittext">Событие</p>
+      <span class="gotovotext">Готово</span>
+    </div>
+      
+      <script>
+        // Обработчик события для кнопки "Назад"
+        document.getElementById('backButton').addEventListener('click', function() {
+            window.location.href = 'http://localhost:8080/smartSearchBack/AdminCalendar';
+        });
+    </script>
+    <form class="edit-form">
+      <label>Имя</label>
+      <input type="text" value="Название" />
+    </form>
+    <label>Дата события</label>
+    <!-- Выбор года и месяца -->
+    <div class="mb-3 ms-4">
+      <select id="yearSelect" class="form-select w-auto d-inline"></select>
+      <select id="monthSelect" class="form-select w-auto d-inline"></select>
+    </div>
+
+    <div class="calendar mb-4 ms-4">
+      <h4 id="calendarTitle">Февраль 2025</h4>
+      <div class="days">
+        <div class="weekday">Пн</div>
+        <div class="weekday">Вт</div>
+        <div class="weekday">Ср</div>
+        <div class="weekday">Чт</div>
+        <div class="weekday">Пт</div>
+        <div class="weekday">Сб</div>
+        <div class="weekday">Вс</div>
+      </div>
+      <div id="calendarDays" class="days mt-2"></div>
+    </div>
+    <label>Время</label>
+    <form class="edit-form">
+      <div class="working-hours">
+        <input type="time" value="08:00" />
+        <span>-</span>
+        <input type="time" value="17:00" />
+      </div>
+    </form>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const yearSelect = document.getElementById("yearSelect");
+        const monthSelect = document.getElementById("monthSelect");
+        const calendarTitle = document.getElementById("calendarTitle");
+        const calendarDays = document.getElementById("calendarDays");
+        const eventContainer = document.querySelector(".edit-form");
+
+        // Заполняем список лет
+        const currentYear = new Date().getFullYear();
+        for (let year = currentYear - 5; year <= currentYear + 5; year++) {
+          let option = new Option(year, year);
+          yearSelect.appendChild(option);
+        }
+        yearSelect.value = 2025;
+
+        // Заполняем список месяцев
+        const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+          "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+        months.forEach((month, index) => {
+          let option = new Option(month, index);
+          monthSelect.appendChild(option);
+        });
+        monthSelect.value = 1; // Февраль
+
+        // Функция для генерации календаря
+        function generateCalendar(year, month) {
+          calendarDays.innerHTML = ""; // Очищаем календарь
+          calendarTitle.innerText = `${months[month]} ${year}`;
+
+          let firstDay = new Date(year, month, 1).getDay();
+          let daysInMonth = new Date(year, month + 1, 0).getDate();
+
+          // Коррекция первого дня (чтобы Пн был первым)
+          firstDay = firstDay === 0 ? 6 : firstDay - 1;
+
+          // Заполняем пустые ячейки перед началом месяца
+          for (let i = 0; i < firstDay; i++) {
+            calendarDays.innerHTML += `<div></div>`;
+          }
+
+          // Заполняем числа месяца
+          for (let day = 1; day <= daysInMonth; day++) {
+            let dayClass = (day === 8 && month === 1 && year === 2025) ? "day selected" : "day";
+            calendarDays.innerHTML += `<div class="${dayClass}" data-day="${day}" data-month="${month}" data-year="${year}">${day}</div>`;
+          }
+        }
+
+        // Генерация календаря при загрузке
+        generateCalendar(2025, 1);
+
+        // Обновление календаря при смене месяца/года
+        yearSelect.addEventListener("change", () => {
+          generateCalendar(parseInt(yearSelect.value), parseInt(monthSelect.value));
+        });
+
+        monthSelect.addEventListener("change", () => {
+          generateCalendar(parseInt(yearSelect.value), parseInt(monthSelect.value));
+        });
+      });
+    </script>
+</body>
+
+</html>
