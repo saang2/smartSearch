@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap" rel="stylesheet" />
+    <title>Создать чат - админ</title>
+    <style>
+        .list-item.selected {
+            background-color: #f0f0f0;
+            border: 1px solid #fe5a22;
+        }
+
+        .round-button {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        .list-item.selected .round-button {
+            background-color: #fe5a22;
+        }
+    </style>
+</head>
+<body>
+    <div class="container6">
+        <div class="header6">
+            <img src="/img/qucik_sign_up.png" alt="Назад" class="qucik-signup2" />
+            <p class="edittext">Новый чат</p>
+             <span class="gotovotext3" id="createChatButton">Готово</span>
+        </div>
+    </div>
+    <div class="profile-image">
+        <img src="/img/new_photo.png" alt="Фото чата" class="profile-pic2" />
+    </div>
+
+    <div class="form-container">
+        <input type="text" id="chat-name" placeholder="Название чата" class="chat-name" />
+    </div>
+
+    <p class="vibor">Выберите пользователей</p>
+    <div class="container11">
+        <div class="list" id="userList">
+            <!-- Список пользователей будет заполнен динамически -->
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Загрузка списка пользователей
+       document.addEventListener("DOMContentLoaded", function () {
+    // Загрузка списка пользователей
+    fetch("/smartSearchBack/getAllUsers")
+        .then(response => response.json())
+        .then(users => {
+            const userList = document.getElementById("userList");
+            users.forEach(user => {
+                const listItem = document.createElement("div");
+                listItem.className = "list-item";
+                listItem.innerHTML = `
+                    <button class="round-button"></button>
+                    <img src="/img/sticker_osnova.png" alt="Фото участника" class="participant-photo">
+                    <span class="chatname">${user.userName}</span>
+                `;
+                listItem.dataset.userId = user.isUsers; // Используем isUsers как идентификатор
+                userList.appendChild(listItem);
+            });
+        });
+
+    // Обработчик выбора пользователей
+    userList.addEventListener("click", function (event) {
+        const listItem = event.target.closest(".list-item");
+        if (listItem) {
+            listItem.classList.toggle("selected");
+        }
+    });
+});
+
+document.getElementById("createChatButton").addEventListener("click", function () {
+    const chatName = document.getElementById("chat-name").value;
+    const selectedUsers = Array.from(document.querySelectorAll(".list-item.selected"))
+        .map(item => parseInt(item.dataset.userId, 10)); // Преобразуем строки в числа
+
+    if (!chatName || selectedUsers.length === 0) {
+        alert("Пожалуйста, заполните название чата и выберите пользователей.");
+        return; // Ничего не делаем, если данные не заполнены
+    }
+
+    // Отправка данных на сервер
+    fetch("/smartSearchBack/addRoom", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams({
+            nameRoom: chatName,
+            userIds: selectedUsers.join(",") // Преобразуем массив в строку
+        })
+    })
+    .then(response => {
+        if (response.ok) {
+            // Перенаправление на страницу загрузки
+            window.location.href = "/smartSearchBack/Loading";
+        } else {
+            alert("Ошибка при создании чата.");
+        }
+    })
+    .catch(error => {
+        console.error("Ошибка:", error);
+    });
+});
+    </script>
+</body>
+</html>
