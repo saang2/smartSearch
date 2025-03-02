@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="/css/bootstrap.min.css" />
+   <link rel="stylesheet" href="/css/style.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap" rel="stylesheet">
+   <title>Авторизация</title>
+</head>
+<body>
+<div class="container">
+   <header class="header">
+       <span class="close-button">Закрыть</span>
+       <h1 class="title">ElkaBridge</h1>
+       <div class="dots">...</div>
+   </header>
+   <img class="logo" src="/img/logo.png" alt="Софториум Logo">
+   <h2 class="subtitle text-uppercase">Софториум</h2>
+   
+   <div class="form-container">
+       <form action=" https://f2d3-57-129-20-198.ngrok-free.app/smartSearchBack/addUser" method="POST">
+           <div class="form-group">
+               <label for="name" class="form-label">Имя</label>
+               <input type="text" id="name" name="userName" class="form-control input-fields" placeholder="Ваше имя" required>
+           </div>
+           <div class="text-center"> 
+               <button type="submit" class="signup-button text-uppercase">Продолжить</button> 
+           </div>
+       </form>
+   </div>
+</div>
+<img class="sticker" src="/img/sticker_a_gde_garag.png" alt="Sticker">
+
+<script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

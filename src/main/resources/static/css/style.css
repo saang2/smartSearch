@@ -1,0 +1,1339 @@
+@media (max-width: 720px) {
+  body {
+    background: #f0f0f0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500; /* Medium */
+  }
+
+  /* Стиль для страницы Index (Регистрация) */
+  .container {
+    position: relative;
+    width: 100%;
+    max-width: 419px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 50px;
+  }
+
+  .close-button,
+  .title,
+  .dots {
+    flex: 1;
+    text-align: center;
+  }
+
+  .close-button {
+    font-weight: 500;
+    font-size: 16px;
+    color: #5e5e5e;
+    line-height: 24px;
+    font-style: normal;
+    margin-top: -15px;
+  }
+
+  .title {
+    font-weight: 500;
+    font-size: 20px;
+    color: #fe5a22;
+    margin-top: -5px;
+  }
+
+  .dots {
+    font-weight: 600;
+    font-size: 40px;
+    color: #5e5e5e;
+    margin-top: -33px;
+  }
+
+  .logo {
+    position: absolute;
+    width: 75.59px;
+    height: auto;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .subtitle {
+    text-align: center;
+    font-weight: 500;
+    font-size: 32px;
+    text-transform: uppercase;
+    color: #000000;
+    margin: 24px 0;
+    margin-top: 216px;
+  }
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем по горизонтали */
+    justify-content: center; /* Центрируем по вертикали */
+    width: 100%;
+    max-width: 300px; /* Ограничиваем ширину */
+    margin: 0 auto; /* Центрируем контейнер по горизонтали */
+}
+
+.form-group {
+    width: 100%; /* Занимает всю ширину родительского контейнера */
+    text-align: center; /* Центрируем текст */
+    margin-bottom: 16px; /* Отступ между элементами */
+}
+
+.form-label {
+    display: block; /* Делаем лейбл блочным элементом */
+    text-align: left; /* Центрируем текст лейбла */
+    margin-bottom: 8px; /* Отступ между лейблом и полем ввода */
+}
+
+.input-fields {
+    width: 100%; /* Занимает всю ширину родительского контейнера */
+    min-width: 310px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 16px;
+    color: #5e5e5e !important;
+    padding: 8px;
+    display: block; /* Делаем поле ввода блочным элементом */
+    margin: 0 auto; /* Центрируем поле ввода по горизонтали */
+    text-align: left; /* Текст внутри поля ввода выровнен по левому краю */
+}
+
+.text-center {
+    text-align: center; /* Центрируем содержимое */
+    width: 100%; /* Занимает всю ширину родительского контейнера */
+}
+
+.signup-button {
+    width: 100%; /* Занимает всю ширину родительского контейнера */
+    max-width: 300px; /* Ограничиваем ширину */
+    background: #fe5a22;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2), 0px 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    font-weight: 900;
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+    padding: 12px;
+    border: none;
+    margin-top: 26.28px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block; /* Делаем кнопку блочным элементом */
+    margin-left: auto; /* Центрируем кнопку по горизонтали */
+    margin-right: auto;
+}
+
+.signup-button:hover {
+    background-color: #e04e1b; /* Цвет при наведении */
+    transform: translateY(-2px); /* Поднимаем кнопку вверх */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2), 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+  .sticker {
+    width: 220px; /* Уменьшаем ширину */
+    height: auto; /* Сохраняем пропорции */
+    position: fixed;
+    right: 0;
+    bottom: 0;
+}
+
+
+
+  
+
+  /* Стиль для страницы Loading (Загрузка) */
+  .center-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+    margin-top: 200px;
+  }
+
+  .nameloader {
+    color: #fe5a22;
+  }
+
+  .stickerloading {
+    width: 288px;
+    height: auto;
+    position: relative;
+  }
+
+  .loader {
+    border: 8px solid #ffffff;
+    border-top: 8px solid #fe5a22;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    position: relative;
+    margin-top: 10px;
+  }
+
+  .bodyloading {
+    overflow: hidden;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Стиль для страницы Chats (Чаты) */
+  .container2 {
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 31px;
+  }
+
+  .header2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .stickerosnova {
+    width: 43px;
+    height: 43px;
+    margin-right: 10px;
+  }
+
+  .username {
+    font-size: 16px;
+    font-weight: bold;
+    flex-grow: 1;
+    text-align: center;
+    margin-left: -100px;
+  }
+
+  .icon-container {
+    display: flex;
+    align-items: center;
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    margin-left: 22px;
+  }
+
+  .search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  .search {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #b7b7b7;
+    border-radius: 4px;
+    font-size: 20px;
+    background-color: #d8d8d8;
+    padding-left: 55px;
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .messages {
+    max-height: calc(100vh - 76px);
+    overflow-y: auto;
+    padding: 16px;
+    margin-bottom: 0;
+    margin-left: -30px;
+  }
+
+  .message {
+    display: flex;
+    flex-direction: column;
+    padding: 2px 15px;
+    margin-bottom: 5px;
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .message-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+
+  .message img {
+    width: 78px;
+    height: 78px;
+    margin-right: 10px;
+    margin-top: 3px;
+  }
+
+  .code {
+    font-weight: bold;
+    margin-right: 105px;
+    margin-top: -20px;
+  }
+
+  .time {
+    font-size: smaller;
+    color: gray;
+    margin-left: 53px;
+    margin-top: -20px;
+  }
+
+  .message-content {
+    margin-left: 0;
+  }
+
+  .message p {
+    margin: 0;
+    word-break: break-word;
+    margin-top: -40px;
+    margin-left: 82px;
+  }
+
+  .message-line {
+    height: 3px;
+    background-color: #d8d8d8;
+    width: 85%;
+    margin-bottom: 10px;
+    margin-left: 80px;
+  }
+
+  .bottom-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 76px;
+    background-color: #fff;
+    box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10; /* Чтобы панель была поверх сообщений */
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+  }
+
+  .menu {
+    width: 100%; /* Убедитесь, что ширина 100% */
+    position: fixed; /* Зафиксируйте меню внизу */
+    bottom: 0; /* Привяжите к нижней части окна */
+    left: 0; /* Привяжите к левому краю */
+    background-color: #1c1c1c; /* Убедитесь, что фон виден */
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Добавьте тень для визуального отделения */
+    display: flex; /* Используйте flexbox для выравнивания элементов */
+    justify-content: space-around; /* Распределите элементы равномерно */
+    padding: 10px 0; /* Добавьте отступы сверху и снизу */
+}
+
+.menu-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0; /* Убедитесь, что нет отступов */
+    padding: 5px; /* Добавьте внутренние отступы, если нужно */
+}
+
+.menu-item img {
+    width: 35px; /* Убедитесь, что ширина фиксирована */
+    height: auto; /* Высота автоматически подстраивается */
+}
+
+.textmenu,
+.textmenu2 {
+    color: #f0f0f0;
+    font-size: 9px;
+}
+
+.textmenu2 {
+    color: #fe5a22;
+}
+
+  .bodychats {
+    overflow: hidden;
+  }
+
+  /* Стиль для страницы Профиль (Profile) */
+  .container3 {
+    padding: 20px;
+    max-width: 400px;
+    margin: auto;
+  }
+
+  .header3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .edittext {
+    font-size: 16px;
+    color: #333;
+    margin-left: 40px;
+    margin-top: 15px;
+  }
+
+  .gotovotext {
+    font-size: 16px;
+    color: #fe5a22;
+    margin-right: -13px;
+  }
+
+  .qucik-signup {
+    width: 15px;
+    height: auto;
+    margin-left: -8px;
+  }
+
+  .profile-image {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .profile-pic {
+    width: 157px;
+    height: 127px;
+    display: inline-block;
+    margin-top: -30px;
+  }
+
+  .edit-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .edit-form label {
+    margin: 10px 0 5px;
+    font-weight: bold;
+  }
+
+  .edit-form input,
+  .edit-form select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #d8d8d8;
+    color: #5e5e5e;
+    margin-bottom: 10px;
+  }
+
+  .working-days,
+  .working-hours {
+    display: flex;
+    align-items: center;
+  }
+
+  .working-days select,
+  .working-hours input {
+    flex: 1;
+  }
+
+  span {
+    margin: 0 10px;
+    font-weight: bold;
+    color: #fe5a22;
+  }
+
+  .menu2 {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    height: 100px;
+    margin-top: 90px;
+    width: 410px;
+  }
+
+  /* Стиль для страницы Звонки (Calls) */
+  .container4 {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+  }
+
+  .callsname {
+    font-size: 16px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 13px;
+  }
+
+  .call-link {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #ff5722;
+    cursor: pointer;
+  }
+
+  .call-icon {
+    width: 90px;
+    height: 90px;
+    margin-right: 8px;
+    margin-top: 21px;
+    margin-left: -10px;
+  }
+
+  .addcalls {
+    font-size: 16px;
+    margin-top: 21px;
+  }
+
+  .container5 {
+    max-width: 600px;
+    margin: auto;
+    margin-left: 20px;
+  }
+
+  .historyname {
+    margin-bottom: 20px;
+    margin-left: 15px;
+    color: #5e5e5e;
+    font-size: 16px;
+  }
+
+  .call-entry {
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    margin-bottom: 7px;
+  }
+
+  .circle {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+
+  .call-info {
+    margin-left: 15px;
+  }
+
+  .call-info h2 {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .call-info p {
+    margin: 0;
+    color: #666;
+  }
+
+  .menu3 {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    height: 100px;
+    margin-top: 20px;
+    width: 410px;
+  }
+
+  .bodycalls {
+    overflow: hidden;
+  }
+
+  .call-history {
+    max-height: 700px;
+    overflow-y: scroll;
+  }
+
+  /* Стиль для страницы Изменение чата админ (EditChatAdmin) */
+  .container6 {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .header6 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .qucik-signup2 {
+    width: 15px;
+    height: 15px;
+  }
+
+  .gotovotext2 {
+    color: #5e5e5e;
+  }
+
+  .profile-image {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .profile-pic2 {
+    width: 177px;
+    height: 147px;
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 0 auto;
+    width: fit-content;
+    min-width: 350px;
+  }
+
+  .namelabel {
+    margin-bottom: 5px; 
+  }
+
+  .chat-name {
+    width: 100%;
+    padding: 10px;
+    background-color: #d8d8d8;
+    border: 1px solid #b7b7b7;
+    border-radius: 5px;
+    color: #5e5e5e;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #b7b7b7;
+    border-radius: 5px;
+    background-color: #d8d8d8;
+    margin-top: 50px;
+    padding-bottom: 290px;
+  }
+
+  .photo-section {
+    margin-bottom: 15px; 
+    display: flex;
+    align-items: center; 
+  }
+
+  .photo-item {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+    padding: 10px; 
+    border-radius: 5px;
+  }
+
+  .photo-item img {
+    width: 30px; 
+    height: 30px;
+  }
+
+  .photo-item p {
+    margin: 0; 
+  }
+
+  .textedit {
+    color: #5e5e5e;
+    font-size: 20px;
+  }
+
+  .icon2 {
+    width: 56px;
+    height: 56px;
+  }
+
+  /* Стиль для страницы Чат редактирование (EditChat) */
+  .container7 {
+    max-width: 600px;
+    margin: auto;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+
+  .header7 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .back-icon2 {
+    width: 15px;
+    height: 15px;
+    margin-top: -130px;
+  }
+
+  .settings-icon {
+    width: 46px;
+    height: 46px;
+    margin-top: -350px;
+    margin-left: 290px;
+  }
+
+  .profile7 {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 50px;
+  }
+
+  .profile-pic7 {
+    width: 110px;
+    height: 120px;
+    margin-bottom: 5px;
+  }
+
+  .user-info {
+    text-align: center;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: -70px;
+    margin-left: -20px;
+  }
+
+  .action {
+    text-align: center;
+  }
+
+  .action-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .participants2 {
+    color: #5e5e5e;
+    margin-top: -10px;
+  }
+
+  .bodyeditchat{
+    overflow: hidden;
+  }
+
+  .container9 {
+    background: #d8d8d8;
+    border-radius: 8px;
+    padding: 20px;
+    margin-left: -15px;
+    margin-right: 15px;
+    margin-top: 50px;
+  }
+
+  .headeredit {
+    margin-bottom: 20px;
+  }
+
+  .header-columns {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    margin-left: 10px;
+  }
+
+  .participant-photo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px; 
+  }
+
+  .chatname {
+    color: #000000;
+    flex-grow: 1; 
+    margin-right: 10px; 
+  }
+
+  .more-options2 {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: #5e5e5e;
+    font-weight: bold;
+    margin-right: 20px;
+  }
+
+  .f1 {
+    margin-left: 40px;
+  }
+
+  .f3 {
+    margin-right: 40px;
+  }
+
+/* Стиль для страницы Создать чат - только для админа (AddChat) */
+.gotovotext2 {
+  color: #ff5722;;
+}
+
+.container11 {
+  background-color: #D8D8D8;
+  padding: 20px;
+  border-radius: 8px;
+  height: 521px;
+}
+
+.vibor{
+  color: #333;
+  font-size: 20px;
+  margin-left: 30px;
+  margin-top: 20px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.participant-photo {
+  width: 43px;
+  height: 43px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.chatname {
+  flex-grow: 1;
+  color: #333;
+}
+
+.round-button {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: orange;
+  border: none;
+  margin-right: 10px;
+  cursor: pointer;
+  outline: none;
+}
+
+.round-button:hover {
+  background-color: #cc7a00; /* Более темный оранжевый при наведении */
+}
+
+
+  /* Стиль для страницы Календарь событий */
+  .header678568 {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+  }
+
+  .edittexthg {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin-left: 80px;
+    margin-top: 15px;
+  }
+
+  .calendar {
+    width: 300px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .calendar h4 {
+    margin-bottom: 15px;
+  }
+
+  .days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 5px;
+  }
+
+  .day,
+  .weekday {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    border-radius: 50%;
+  }
+
+  .weekday {
+    font-weight: bold;
+  }
+
+  .day:hover {
+    background-color: #ff5722;
+    cursor: pointer;
+  }
+
+  .event-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .event-time {
+    color: #ff5722;
+    font-weight: bold;
+  }
+
+  .event-name {
+    color: #000000;
+    font-weight: bold;
+  }
+
+  .event-status {
+    border: none;
+    background: #ddd;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  
+  
+  
+  
+  /* Стили для страницы Чат с сообщениями (ChatSoo) */
+  .chat-container {
+    width: 100%;
+    max-width: 419px;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Занимает всю высоту экрана */
+    margin: 0 auto;
+}
+
+  /* Header Styles */
+  .chat-header {
+    background-color: #d8d8d8;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    position: sticky; /* Фиксируем шапку */
+    top: 0; /* Прилипает к верхнему краю */
+    z-index: 100; /* Чтобы шапка была поверх других элементов */
+}
+
+  .header-left {
+    display: flex;
+    align-items: center;
+  }
+
+  .back-button {
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #5e5e5e;
+    font-weight: 500;
+  }
+
+  .message-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .header-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header-info .name {
+    font-weight: 500;
+    font-size: 1em;
+  }
+
+  .header-info .participants {
+    font-size: 0.8em;
+    color: #777;
+  }
+
+  .call-icon {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    margin-top: -5px;
+  }
+
+/* Message Area Styles */
+.chat-messages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto; /* Включаем прокрутку только для области сообщений */
+    display: flex;
+    flex-direction: column;
+}
+
+.message1 {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 70%;
+    word-wrap: break-word;
+    font-weight: 400; /* Убираем жирное начертание */
+    position: relative;
+}
+
+.message1.sent {
+    background-color: #313131; /* Темно-серый для сообщений текущего пользователя */
+    color: #ffffff; /* Белый текст */
+    align-self: flex-end; /* Сообщения текущего пользователя справа */
+    margin-left: auto; /* Выравнивание по правому краю */
+}
+
+.message1.received {
+    background-color: #2a2a2a; /* Чуть светлее темно-серый для чужих сообщений */
+    color: #ffffff; /* Белый текст */
+    align-self: flex-start; /* Сообщения других пользователей слева */
+    margin-right: auto; /* Выравнивание по левому краю */
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: absolute;
+    display: inline-block;
+}
+
+.triangle-left {
+    border-width: 10px 10px 10px 0;
+    border-color: transparent #2a2a2a transparent transparent; /* Цвет треугольника для чужих сообщений */
+    left: -10px;
+    bottom: 10px;
+}
+
+.triangle-right {
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent #313131; /* Цвет треугольника для своих сообщений */
+    right: -10px;
+    bottom: 10px;
+}
+
+.message-time {
+    font-size: 0.7em;
+    color: #aaa; /* Серый цвет для времени */
+    text-align: right;
+    margin-top: 5px;
+    display: block;
+}
+
+.message-sender {
+    font-size: 0.8em;
+    font-weight: 400; /* Убираем жирное начертание */
+    margin-bottom: 5px; /* Отступ между именем отправителя и текстом сообщения */
+    color: #ffffff; /* Белый цвет для имени отправителя */
+}
+
+.message-content {
+    font-size: 0.9em;
+    color: #ffffff !important; /* Белый цвет для текста сообщения */
+    margin-top: 5px;
+}
+  /* Input Area Styles */
+  .chat-input-area {
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    background-color: #000;
+  }
+
+  .input-field {
+    flex-grow: 1;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 8px 15px;
+    outline: none;
+    background-color: #222;
+    color: white;
+  }
+
+  .attachment-icon {
+    font-size: 1.5em;
+    color: #555;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .send-icons {
+    display: flex;
+    margin-left: 10px;
+  }
+
+  .send-icons span {
+    font-size: 1.5em;
+    color: #555;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  
+   /* Стили для страницы Логи (Logi) */
+  .notification {
+    background-color: #1c1c1c;
+    color: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 100%;
+    margin-bottom: 30px;
+    align-self: center;
+    position: relative;
+    text-align: center;
+  }
+
+  .notification.deleted {
+    background-color: #d9d9d9;
+    color: rgb(0, 0, 0);
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+
+  .notification.edited {
+    background-color: #f1faee;
+  }
+
+  .original-message {
+    background-color: #b5b3b3;
+    color: #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+    margin-top: 15px;
+  }
+
+  .message1.edited {
+    background-color: #1c1c1c;
+    color: #000;
+    border-radius: 8px;
+    padding: 10px;
+    max-width: 70%;
+    margin-bottom: 20px;
+    align-self: flex-start;
+    position: relative;
+  }
+
+  .elka {
+    color: #ffffff;
+    font-weight: normal;
+    margin-top: 10px;
+  }
+
+  .ish {
+    color: #ffffff;
+    font-weight: bold;
+    margin-left: -1px;
+  }
+
+  .settings-text {
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    font-size: 16px;
+    margin-left: 140px;
+    display: block;
+  }
+
+  /* Стили для страницы Создать звонок (AddCalls) */
+  .edittext2 {
+    font-size: 16px;
+    color: #333;
+    margin-right: 129px;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+
+  .profile-pic-calls {
+    width: 100px;
+    height: 100px;
+    margin-top: -40px;
+  }
+
+  .profile71 {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 0px;
+    margin-top: -20px;
+  }
+
+  .profile-pic71 {
+    width: 110px;
+    height: 120px;
+    margin-bottom: 5px;
+  }
+
+  .user-info1 {
+    text-align: center;
+  }
+
+  .a {
+    font-weight: bold;
+  }
+
+  .content4 {
+    display: flex;
+    flex-direction: column;
+    width: 410px;
+    height: 580px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #b7b7b7;
+    border-radius: 5px;
+    background-color: #d8d8d8;
+    margin-top: 50px;
+    padding-bottom: 290px;
+    margin-left: -25px;
+  }
+
+  .photo-section2 {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+  }
+
+  .photo-item2 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+
+  .photo-item img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .photo-item p {
+    margin: 0;
+  }
+
+  .textedit4 {
+    color: #5e5e5e;
+    font-size: 20px;
+    margin-top: 10px;
+  }
+
+  .icon4 {
+    width: 48px;
+    height: 48px;
+  }
+
+  .participants4 {
+    color: #000000;
+    margin-top: -10px;
+  }
+
+  .bodyaddcalls {
+    overflow: hidden; /* Скрываем прокрутку */
+  }
+   /* Стили страницы Звонок (Zvonim) */
+  .menu11 {
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0;
+    background-color: #1c1c1c;
+    border-radius: 10px;
+    height: 100px;
+    width: 410px;
+    position: fixed; /* Фиксируем панель */
+    bottom: 20px; /* Отступ от нижнего края */
+    left: 50%; /* Центрируем по горизонтали */
+    transform: translateX(-50%); /* Точное центрирование */
+    z-index: 1000; /* Убедимся, что панель поверх других элементов */
+}
+
+  .menu-item11 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+  }
+
+  .menu-item11 img {
+    width: 65px;
+    height: 65px;
+  }
+
+  .center-image {
+    display: flex;
+    justify-content: center;
+    margin-top: 200px; /* Отступ сверху */
+  }
+
+  .image34 {
+    margin-top: 50px;
+    margin-left: 26px;
+  }
+
+  .waiting-container {
+    position: absolute;
+    width: 194px;
+    height: 34px;
+    left: 113px; 
+    top: 188px; 
+  }
+
+  .waiting-background {
+    background: #B7B7B7;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%; 
+  }
+
+  .waiting-text {
+    font-size: 16px;
+    text-align: center; 
+    color: #000000;
+  }
+
+  .bodyzvonim{
+    overflow: hidden; /* Скрываем прокрутку */
+  }
+}

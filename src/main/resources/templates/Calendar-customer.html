@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap" rel="stylesheet" />
+  <title>Календарь событий</title>
+  <style>
+    /* Скрываем стрелку вниз */
+    select {
+      -webkit-appearance: none;
+      /* Для браузеров на базе WebKit (Chrome, Safari) */
+      -moz-appearance: none;
+      /* Для Firefox */
+      appearance: none;
+      /* Универсальное свойство */
+      background-image: none;
+      /* Убираем изображение стрелки (если оно есть) */
+      padding-right: 20px;
+      /* Добавьте отступ справа, чтобы текст не налегал на край */
+    }
+
+    /* Для некоторых браузеров может потребоваться добавить стиль для фона */
+    select:focus {
+      outline: none;
+      /* Убираем рамку при фокусе */
+    }
+    /* Стиль для выделения даты оранжевым кружком */
+    .highlighted-date {
+      background-color: #FF8040;
+      color: white;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container3">
+    <div class="header678568">
+      <img src="/img/qucik_sign_up.png" alt="Назад" class="qucik-signup" id="backButton" style="cursor: pointer;" />
+      <p class="edittexthg">Календарь событий</p>
+    </div>
+      <script>
+        // Обработчик события для кнопки "Назад"
+        document.getElementById('backButton').addEventListener('click', function() {
+            window.location.href = 'https://f2d3-57-129-20-198.ngrok-free.app/smartSearchBack/Chats';
+        });
+    </script>
+    <div class="search-container mb-3">
+      <input type="text" class="search" placeholder="Поиск">
+      <img src="/img/search.png" alt="Поиск" class="search-icon">
+    </div>
+    <label>Дата события</label>
+    <!-- Выбор года и месяца -->
+    <div class="mb-3 ms-4">
+      <select id="yearSelect" class="form-select w-auto d-inline"></select>
+      <select id="monthSelect" class="form-select w-auto d-inline"></select>
+    </div>
+
+    <div class="calendar mb-4 ms-4">
+      <h4 id="calendarTitle">Февраль 2025</h4>
+      <div class="days">
+        <div class="weekday">Пн</div>
+        <div class="weekday">Вт</div>
+        <div class="weekday">Ср</div>
+        <div class="weekday">Чт</div>
+        <div class="weekday">Пт</div>
+        <div class="weekday">Сб</div>
+        <div class="weekday">Вс</div>
+      </div>
+      <div id="calendarDays" class="days mt-2"></div>
+    </div>
+    <label>События</label>
+    <div id="eventsContainer" style="display: none;"></div>
+    <div class="edit-form">
+      <div class="event-item">
+        <span class="event-time">08:00-12:00</span>
+        <span class="event-name">ЕлкинКод стартует</span>
+        <select class="working-days">
+          <option>Завершено</option>
+        </select>
+      </div>
+      <div class="event-item">
+        <span class="event-time">12:00-23:00</span>
+        <span class="event-name">ЕлкинКод разработка</span>
+        <select class="working-days">
+          <option>В процессе</option>
+        </select>
+      </div>
+      <div class="event-item">
+        <span class="event-time">23:00-00:00</span>
+        <span class="event-name">ЕлкинКод завершение</span>
+        <select class="working-days">
+          <option>Не начато</option>
+        </select>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const yearSelect = document.getElementById("yearSelect");
+        const monthSelect = document.getElementById("monthSelect");
+        const calendarTitle = document.getElementById("calendarTitle");
+        const calendarDays = document.getElementById("calendarDays");
+        const eventsContainer = document.getElementById("eventsContainer");
+        const editForm = document.querySelector(".edit-form");
+
+        // Скрываем контейнер событий при загрузке
+        eventsContainer.style.display = "none";
+        editForm.style.display = "none";
+
+        // Заполняем список лет
+        const currentYear = new Date().getFullYear();
+        for (let year = currentYear - 5; year <= currentYear + 5; year++) {
+          let option = new Option(year, year);
+          yearSelect.appendChild(option);
+        }
+        yearSelect.value = 2025;
+
+        // Заполняем список месяцев
+        const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+          "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
+        months.forEach((month, index) => {
+          let option = new Option(month, index);
+          monthSelect.appendChild(option);
+        });
+        monthSelect.value = 1; // Февраль
+
+        // Функция для генерации календаря
+        function generateCalendar(year, month) {
+          calendarDays.innerHTML = ""; // Очищаем календарь
+          calendarTitle.innerText = `${months[month]} ${year}`;
+
+          let firstDay = new Date(year, month, 1).getDay();
+          let daysInMonth = new Date(year, month + 1, 0).getDate();
+
+          // Коррекция первого дня (чтобы Пн был первым)
+          firstDay = firstDay === 0 ? 6 : firstDay - 1;
+
+          // Заполняем пустые ячейки перед началом месяца
+          for (let i = 0; i < firstDay; i++) {
+            calendarDays.innerHTML += `<div></div>`;
+          }
+          
+
+           // Заполняем числа месяца
+          for (let day = 1; day <= daysInMonth; day++) {
+            let isHighlighted = (day === 8 && month === 1 && year === 2025); // Проверка на 8 февраля 2025
+            calendarDays.innerHTML += `
+                <div class="day ${isHighlighted ? 'highlighted-date' : ''}" 
+                     data-day="${day}" 
+                     data-month="${month}" 
+                     data-year="${year}">
+                    ${day}
+                </div>`;
+          }
+
+          // Добавляем обработчики событий на выбор даты
+          document.querySelectorAll(".day").forEach(day => {
+            day.addEventListener("click", function () {
+              document.querySelectorAll(".day").forEach(d => d.classList.remove("selected"));
+              this.classList.add("selected");
+
+              // Проверяем, выбрана ли дата 8 февраля 2025 года
+              let selectedDay = parseInt(this.dataset.day);
+              let selectedMonth = parseInt(this.dataset.month);
+              let selectedYear = parseInt(this.dataset.year);
+
+              if (selectedDay === 8 && selectedMonth === 1 && selectedYear === 2025) {
+                eventsContainer.style.display = "block"; // Показываем контейнер событий
+                editForm.style.display = "block"; // Показываем события
+              } else {
+                eventsContainer.style.display = "none"; // Скрываем контейнер событий
+                editForm.style.display = "none"; // Скрываем события
+              }
+            });
+          });
+        }
+
+        // Генерация календаря при загрузке
+        generateCalendar(2025, 1);
+
+        // Обновление календаря при смене месяца/года
+        yearSelect.addEventListener("change", () => {
+          generateCalendar(parseInt(yearSelect.value), parseInt(monthSelect.value));
+        });
+
+        monthSelect.addEventListener("change", () => {
+          generateCalendar(parseInt(yearSelect.value), parseInt(monthSelect.value));
+        });
+      });
+
+    </script>
+</body>
+
+</html>

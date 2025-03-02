@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat UI</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <style>
+        /* Анимация записи голоса */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .recording-animation {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin: 10px 0;
+        }
+
+        .recording-animation .dot {
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50%;
+            animation: pulse 1s infinite;
+        }
+
+        .recording-animation .dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .recording-animation .dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        /* Стиль для голосового сообщения */
+        .voice-message {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background-color: #de571d; /* Оранжевый фон */
+            color: white;
+            border-radius: 15px;
+            max-width: 200px;
+        }
+
+        .voice-message i {
+            font-size: 20px;
+        }
+
+        .voice-message span {
+            font-size: 14px;
+        }
+
+        /* Стиль для выбора картинки */
+        .image-selector {
+            display: none; /* Скрываем панель с картинками по умолчанию */
+            gap: 10px;
+            margin: 10px 0;
+            flex-wrap: wrap;
+        }
+
+        .image-selector img {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .image-selector img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Стиль для сообщения с картинкой */
+        .image-message {
+            max-width: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .image-message img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body class="bodychatsoo">
+    <div class="chat-container">
+        <!-- Chat Header -->
+        <div class="chat-header">
+            <div class="header-left">
+                <span class="back-button"><i class="fas fa-chevron-left"></i></span>
+                <img src="/img/photo_chats.png" alt="Image" class="message-image" />
+                <div class="header-info">
+                    <div class="name" th:text="${room.nameRoom}">Название чата</div>
+                    <div class="participants">32 участника</div>
+                </div>
+            </div>
+            <img src="/img/calls2.png" alt="Call Icon" class="call-icon" id="callImg" />
+        </div>
+        <script>
+            // Обработчик события для перехода по адресу
+      document.getElementById("callImg").addEventListener("click", function () {
+        window.location.href = "https://f2d3-57-129-20-198.ngrok-free.app/smartSearchBack/Zvonim";
+      });
+        </script>
+        <div class="chat-messages">
+            <!-- Сообщения будут добавляться сюда -->
+        </div>
+        <div class="chat-input-area">
+            <span class="attachment-icon" id="attachFile"><i class="fas fa-paperclip"></i></span>
+            <input type="text" id="messageContent" class="input-field" placeholder="Сообщение" />
+            <div class="send-icons">
+                <span class="sticker-icon"><img src="/img/ellipse.png" alt="Стикер" /></span>
+                <span id="sendMessage" class="mic-icon">
+                    <i class="fas fa-microphone"></i>
+                </span>
+            </div>
+        </div>
+        <!-- Анимация записи голоса -->
+        <div class="recording-animation" id="recordingAnimation">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <span>Запись...</span>
+        </div>
+        <!-- Выбор картинки -->
+        <div class="image-selector" id="imageSelector">
+            <img src="/img/Img1.jpg" alt="Img1" />
+            <img src="/img/Img2.jpg" alt="Img2" />
+            <img src="/img/Img3.jpg" alt="Img3" />
+            <img src="/img/Img4.jpg" alt="Img4" />
+        </div>
+    </div>
+    <script>
+        function addMessageToUI(messageContent, isCurrentUser, isVoiceMessage = false, imageUrl = null) {
+            const chatMessages = document.querySelector('.chat-messages');
+
+            // Создаем контейнер для сообщения
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message1', isCurrentUser ? 'sent' : 'received');
+
+            // Создаем содержимое сообщения
+            const messageContentDiv = document.createElement('div');
+            messageContentDiv.classList.add('message-content');
+
+            if (isVoiceMessage) {
+                // Если это голосовое сообщение
+                const voiceMessage = document.createElement('div');
+                voiceMessage.classList.add('voice-message');
+                voiceMessage.innerHTML = `
+                    <i class="fas fa-microphone"></i>
+                    <span style="color: white;">Голосовое сообщение</span>
+                `;
+                messageContentDiv.appendChild(voiceMessage);
+            } else if (imageUrl) {
+                // Если это сообщение с картинкой
+                const imageMessage = document.createElement('div');
+                imageMessage.classList.add('image-message');
+                imageMessage.innerHTML = `
+                    <img src="${imageUrl}" alt="Картинка" />
+                `;
+                messageContentDiv.appendChild(imageMessage);
+            } else {
+                // Если это текстовое сообщение
+                const messageText = document.createElement('span');
+                messageText.style.color = 'white';
+                messageText.textContent = messageContent;
+                messageContentDiv.appendChild(messageText);
+            }
+
+            const messageTime = document.createElement('span');
+            messageTime.style.color = 'white';
+            messageTime.classList.add('message-time');
+            messageTime.textContent = new Date().toLocaleTimeString(); // Текущее время
+
+            messageContentDiv.appendChild(messageTime);
+
+            // Добавляем треугольник для стиля сообщения
+            const triangle = document.createElement('div');
+            triangle.classList.add('triangle', isCurrentUser ? 'triangle-right' : 'triangle-left');
+
+            messageDiv.appendChild(messageContentDiv);
+            messageDiv.appendChild(triangle);
+
+            // Добавляем сообщение в контейнер
+            chatMessages.appendChild(messageDiv);
+
+            // Прокручиваем контейнер сообщений вниз
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function loadMessages() {
+            const idRoom = "2"; // Здесь должен быть ID комнаты
+
+            fetch(`/smartSearchBack/getMessageRoom?idRoom=${idRoom}`)
+                .then(response => response.json())
+                .then(messages => {
+                    messages.forEach(message => {
+                        addMessageToUI(message.content, message.currentUser); // Используем функцию для добавления сообщения в UI
+                    });
+                })
+                .catch(error => console.error('Ошибка при загрузке сообщений:', error));
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadMessages(); // Загружаем сообщения при загрузке страницы
+        });
+
+        document.getElementById('sendMessage').addEventListener('click', function() {
+            const messageContent = document.getElementById('messageContent').value;
+            const idRoom = "2"; // Статичный ID комнаты
+            const idUser = "1"; // Статичный ID пользователя
+            const urlFile = ""; // Пустое значение, если нет файла
+            const isEditing = 0; // Значение по умолчанию (число)
+            const isDeleted = 0; // Значение по умолчанию (число)
+
+            const params = new URLSearchParams();
+            params.append('idRoom', idRoom);
+            params.append('idUser', idUser);
+            params.append('content', messageContent);
+            params.append('urlFile', urlFile);
+            params.append('isEditing', isEditing.toString()); // Преобразуем число в строку
+            params.append('isDeleted', isDeleted.toString()); // Преобразуем число в строку
+
+            fetch('/smartSearchBack/addMessage', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: params.toString()
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    console.log('Сообщение добавлено');
+                    addMessageToUI(messageContent, true); // true, если сообщение от текущего пользователя
+                    document.getElementById('messageContent').value = ''; // Очищаем поле ввода
+                }
+            })
+            .catch(error => console.error('Ошибка:', error));
+        });
+
+        // Имитация отправки голосового сообщения
+        document.getElementById('sendMessage').addEventListener('click', function() {
+            const recordingAnimation = document.getElementById('recordingAnimation');
+            recordingAnimation.style.display = 'flex'; // Показываем анимацию записи
+
+            // Имитация записи голоса (через 3 секунды "отправляем" сообщение)
+            setTimeout(() => {
+                recordingAnimation.style.display = 'none'; // Скрываем анимацию
+                addMessageToUI('', true, true); // Добавляем голосовое сообщение в чат
+                console.log('Голосовое сообщение "отправлено" (имитация)');
+            }, 3000);
+        });
+
+        // Имитация выбора картинки
+        const imageSelector = document.getElementById('imageSelector');
+        const attachFile = document.getElementById('attachFile');
+
+        // Показываем панель с картинками при нажатии на скрепку
+        attachFile.addEventListener('click', function() {
+            imageSelector.style.display = 'flex'; // Показываем панель с картинками
+        });
+
+        // Обработка выбора картинки
+        imageSelector.querySelectorAll('img').forEach(image => {
+            image.addEventListener('click', function() {
+                const imageUrl = image.src; // Получаем URL выбранной картинки
+                addMessageToUI('', true, false, imageUrl); // Добавляем картинку в чат
+                console.log('Картинка "отправлена" (имитация)');
+                imageSelector.style.display = 'none'; // Скрываем панель с картинками после выбора
+            });
+        });
+    </script>
+</body>
+</html>
