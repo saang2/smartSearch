@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Звонок</title>
+    <style>
+      /* Стили для таймера */
+      .timer {
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 24px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px 20px;
+        border-radius: 10px;
+        z-index: 10;
+      }
+    </style>
+  </head>
+
+  <body class="bodyzvonim">
+    <!-- Таймер -->
+    <div class="timer" id="timer">00:00</div>
+
+    <img src="/img/people.png" class="image34" alt="Люди" />
+
+    <div class="waiting-container">
+      <div class="waiting-background">
+        <span class="waiting-text">Ждем собеседников!</span>
+      </div>
+    </div>
+
+    <div class="center-image">
+      <img src="/img/orange_tel.png" class="image" alt="Телефон-в-центре" />
+    </div>
+
+    <div class="menu11">
+      <div class="menu-item11">
+        <img src="/img/could.png" class="image" alt="Звук" />
+      </div>
+      <div class="menu-item11">
+        <img src="/img/camera.png" class="image" alt="Камера" />
+      </div>
+      <div class="menu-item11">
+        <img src="/img/microfon.png" class="image" alt="Микрофон" />
+      </div>
+      <div class="menu-item11">
+        <img src="/img/red_tel.png" class="image" alt="Телефон" id="phone"/>
+      </div>
+        <script>
+             document.getElementById("phone").addEventListener("click", function () {
+        window.location.href = "https://f2d3-57-129-20-198.ngrok-free.app/smartSearchBack/ChatsGet";
+      });
+        </script>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Таймер
+      let timerInterval;
+      let startTime;
+
+      // Функция для запуска таймера
+      function startTimer() {
+        startTime = Date.now(); // Запоминаем время начала звонка
+        timerInterval = setInterval(updateTimer, 1000); // Обновляем таймер каждую секунду
+      }
+
+      // Функция для обновления таймера
+      function updateTimer() {
+        const currentTime = Date.now();
+        const elapsedTime = Math.floor((currentTime - startTime) / 1000); // Время в секундах
+
+        const minutes = Math.floor(elapsedTime / 60);
+        const seconds = elapsedTime % 60;
+
+        // Форматируем время в формат MM:SS
+        const formattedTime = `${String(minutes).padStart(2, "0")}:${String(
+          seconds
+        ).padStart(2, "0")}`;
+
+        // Обновляем текст таймера
+        document.getElementById("timer").textContent = formattedTime;
+      }
+
+      // Запускаем таймер при загрузке страницы (имитация начала звонка)
+      startTimer();
+
+      // Остановка таймера (например, при завершении звонка)
+      // clearInterval(timerInterval);
+    </script>
+  </body>
+</html>

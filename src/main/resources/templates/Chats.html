@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap" rel="stylesheet">
+    <title>Чаты</title>
+</head>
+<body class="bodychats">
+
+    <div class="container2">
+        <div class="header2">
+            <!-- Изображение для перехода -->
+    <img src="/img/sticker_osnova.png" alt="stickerosnova" class="stickerosnova" id="stickerOsnova">
+            <span class="username">ElkaBridge</span>
+            <div class="icon-container">
+                <!-- Кнопка календаря -->
+                <button id="calendarButton" style="background: none; border: none; padding: 0;">
+                    <img src="/img/calendar.png" alt="Календарь" class="icon">
+                </button>
+                <img src="/img/add.png" alt="Добавить" class="icon" id="addButton" style="cursor: pointer;">
+                
+            </div>
+        </div>
+        <script>
+        // Обработчик события для кнопки "Add"
+        document.getElementById('addButton').addEventListener('click', function() {
+            window.location.href = 'https://f2d3-57-129-20-198.ngrok-free.app/smartSearchBack/AddChats';
+        });
+        
+        // Обработчик события для перехода по адресу
+      document.getElementById("stickerOsnova").addEventListener("click", function () {
+        window.location.href = "https://f2d3-57-129-20-198.ngrok-free.app/smartSearchBack/Profile";
+      });
+    </script>
+
+        <div class="search-container">
+            <input type="text" class="search" placeholder="Поиск">
+            <img src="/img/search.png" alt="Поиск" class="search-icon">
+        </div>
+
+        <div class="messages" id="messages">
+    <!-- Динамически добавляемые чаты -->
+    <div th:each="userRoom : ${userRooms}" class="message" th:onclick="'redirectToChatSoo(' + ${userRoom.idRoom.idRoom} + ')'">
+        <div class="message-header">
+            <img src="/img/photo_chats.png" alt="Image" class="message-image">
+            <span class="code" th:text="${userRoom.idRoom.nameRoom}">Название чата</span>
+            <span class="time">12:30</span>
+        </div>
+        <div class="message-line"></div>
+        <div class="message-content">
+            <p style="color:black">Описание чата</p>
+        </div>
+    </div>
+</div>
+    </div>
+    <script>
+    function redirectToChatSoo(roomId) {
+        window.location.href = 'https://f2d3-57-129-20-198.ngrok-free.app/smartSearchBack/ChatSoo?roomId=' + roomId;
+    }
+</script>
+
+    <div class="menu">
+        <div class="menu-item">
+            <img src="/img/telephone.png" class="image" alt="Звонки">
+            <span class="textmenu">Звонки</span>
+        </div>
+        <div class="menu-item">
+            <img src="/img/chat.png" class="image" alt="Чат">
+            <span class="textmenu2">Чаты</span>
+        </div>
+        <div class="menu-item">
+            <img src="/img/settings.png" class="image" alt="Настройки">
+            <span class="textmenu">Настройки</span>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Получаем роль пользователя из Thymeleaf
+        const workRoleId = [[${workRoleId}]];
+
+        // Обработчик клика на кнопку календаря
+        document.getElementById('calendarButton').addEventListener('click', function() {
+            let redirectUrl;
+
+            // Определяем URL в зависимости от роли
+            switch (workRoleId) {
+                case 1:
+                    redirectUrl = "https://f2d3-57-129-20-198.ngrok-free.app/smartSearchBack/workerCalendar";
+                    break;
+                case 2:
+                    redirectUrl = "https://f2d3-57-129-20-198.ngrok-free.app/smartSearchBack/CustomerCalendar";
+                    break;
+                case 3:
+                    redirectUrl = "https://f2d3-57-129-20-198.ngrok-free.app/smartSearchBack/AdminCalendar";
+                    break;
+                default:
+                    console.error("Неизвестная роль пользователя");
+                    return;
+            }
+
+            // Перенаправляем пользователя
+            window.location.href = redirectUrl;
+        });
+        
+    </script>
+</body>
+</html>
